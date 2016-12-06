@@ -50,3 +50,12 @@ This extension installs the following components:
 
 The vsix will be created under `_package` folder.  
 
+## Learn more
+For detailed instructions on setting up a build definition, check out [this guide](https://msdn.microsoft.com/library/vs/alm/build/define/create).
+
+Check out [this guide](https://www.visualstudio.com/en-us/docs/integrate/extensions/overview) for an overview of extensions of Visual Studio Team Services.
+
+For detailed instructions on how to get and install extensions, check out [this guide](https://www.visualstudio.com/en-us/docs/marketplace/overview).
+
+## License
+The [code](https://github.com/Microsoft/vsts-jboss-wildfly) is open sourced under the MIT license. We love and encourage community contributions.  
