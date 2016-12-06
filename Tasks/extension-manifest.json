@@ -1,0 +1,115 @@
+{
+    "manifestVersion": 1,
+    "id": "jboss-wildfly-management-extension",
+    "name": "JBoss and WildFly",
+    "version": "0.1.0",
+    "publisher": "yacaovsnc",
+    "description": "Manage and deploy your WAR and EAR files to JBoss EAP 7 and WildFly 8+ instance.",
+    "public": false,
+    "categories": [
+        "Build and release"
+    ],
+    "tags": [
+        "deploy",
+        "jboss",
+        "wildfly"
+    ],
+    "content": {
+        "details": {
+            "path": "overview.md"
+        }
+    },
+    "links": {
+        "getstarted": {
+            "uri": "https://github.com/Microsoft/vsts-jboss-wildfly"
+        },
+        "support": {
+            "uri": "https://github.com/Microsoft/vsts-jboss-wildfly/issues"
+        }
+    },
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "icons": {
+        "default": "extension-icon.png"
+    },
+    "files": [
+        {
+            "path": "JBossDeployer"
+        },
+        {
+            "path": "JBossManagementCLI"
+        },
+        {
+            "path": "images",
+            "addressable": true
+        }
+    ],
+    "contributions": [
+        {
+            "id": "jbosseap-wildfly-endpoint-type",
+            "description": "Service Endpoint for JBoss EAP and WildFly.",
+            "type": "ms.vss-endpoint.service-endpoint-type",
+            "targets": [
+                "ms.vss-endpoint.endpoint-types"
+            ],
+            "properties": {
+                "name": "jbosseapwildflyendpoint",
+                "displayName": "JBoss and WildFly",
+                "inputDescriptors": [],
+                "authenticationSchemes": [
+                    {
+                        "type": "ms.vss-endpoint.endpoint-auth-scheme-basic",
+                        "inputDescriptors": [
+                            {
+                                "id": "username",
+                                "name": "Management User",
+                                "description": "User who is authorized to perform management operations using the management console or management CLI.",
+                                "inputMode": "textbox",
+                                "isConfidential": false,
+                                "validation": {
+                                    "isRequired": true,
+                                    "dataType": "string",
+                                    "maxLength": 300
+                                }
+                            },
+                            {
+                                "id": "password",
+                                "name": "Password",
+                                "inputMode": "passwordbox",
+                                "isConfidential": true,
+                                "validation": {
+                                    "isRequired": true,
+                                    "dataType": "string",
+                                    "maxLength": 300
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "jbosseap-deployer-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "JBossDeployer"
+            }
+        },
+        {
+            "id": "jbosseap-management-cli-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "JBossManagementCLI"
+            }
+        }
+    ]
+}
