@@ -33,7 +33,7 @@ This extension installs the following components:
    ![WildFly/Deployment task](images/deploymenttask.png)
 
 1. Select the "JBoss and WildFly" service endpoint you created previously.
-1. Enter the file to be deployed (a wildcard is allowed).
+1. Enter the file to be deployed (a wildcard is allowed but it must resolve to exactly one file).
 1. Select and enter other optional fields.  Hover over the info icon at the end of each field for additional help.
 
 ## Learn more
