@@ -1,5 +1,5 @@
 {
-    "id": "04ca0e8f-a903-4700-a59b-e02a4296f5a0",
+    "id": "7FAAC1F2-AF09-4DEB-AECB-A171F29025C3",
     "name": "JBossDeployer",
     "friendlyName": "JBoss EAP / WildFly Deployment",
     "description": "Deploy WAR and EAR files to JBoss EAP 7 / Wildfly 8+ instance.",

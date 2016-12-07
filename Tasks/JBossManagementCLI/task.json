@@ -1,5 +1,5 @@
 {
-    "id": "2d8830e4-e682-41fd-998c-7a8063b485c2",
+    "id": "F7B6A475-645D-45C0-B953-8AF17C516865",
     "name": "JBossManagementCLI",
     "friendlyName": "JBoss EAP / WildFly Management CLI",
     "description": "Run command(s) via JBoss EAP 7 / Wildfly 8 HTTP management endpoint.",
