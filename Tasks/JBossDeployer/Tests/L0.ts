@@ -8,7 +8,7 @@ import * as ttm from 'vsts-task-lib/mock-test';
 
 describe('jbossdeployer L0 Suite', function () {
     before(() => {
-        process.env['TASK_TEST_TRACE'] = 1;
+        //process.env['TASK_TEST_TRACE'] = 1;
     });
 
     after(() => {
