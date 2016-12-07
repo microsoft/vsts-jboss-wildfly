@@ -51,8 +51,10 @@ function getDeployFile(pattern: string): string {
     let filesList: string[] = tl.match(allFiles, pattern, { matchBase: true });
 
     if (filesList) {
-        if (filesList.length !== 1) {
+        if (filesList.length > 1) {
             throw new Error(tl.loc("FilePatternMatchedMoreThanOneFile"));
+        } else if (filesList.length < 1) {
+            throw new Error(tl.loc("DidNotFindAnyFileFromPatther"));
         }
 
         return filesList[0];
