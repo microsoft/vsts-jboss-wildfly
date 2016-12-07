@@ -8,7 +8,7 @@ import * as ttm from 'vsts-task-lib/mock-test';
 
 describe('jbossdeployer L0 Suite', function () {
     before(() => {
-
+        process.env['TASK_TEST_TRACE'] = 1;
     });
 
     after(() => {
@@ -32,7 +32,7 @@ describe('jbossdeployer L0 Suite', function () {
         done();
     });
 
-    it('runs jbossdeployer with list groups', (done: MochaDone) => {
+    it('runs jbossdeployer with list group', (done: MochaDone) => {
         this.timeout(1000);
 
         let tp = path.join(__dirname, 'L0runsJBossDeployerList.js');
@@ -40,7 +40,23 @@ describe('jbossdeployer L0 Suite', function () {
 
         tr.run();
         assert(tr.ran('java -cp test_full_path com.microsoft.alm.Driver -s https://example.test/v0.1 -u test_username -p test_password -c deploy mock_file --force --disabled --name=mock_name --runtime-name=mock_runtimeName --server-groups=mock_list_groups mock_options'), 
-            'it should have run jbossdeployer with list groups');
+            'it should have run jbossdeployer with list group');
+        assert(tr.invokedToolCount == 1, 'should have only run jbossdeployer');
+        assert(tr.stdout.indexOf('bash output here') >= 0, "bash stdout");
+        assert(tr.stderr.length == 0, 'should not have written to stderr');
+        assert(tr.succeeded, 'task should have succeeded');
+
+        done();
+    });
+
+    it('runs jbossdeployer with multiple list groups', (done: MochaDone) => {
+        this.timeout(1000);
+
+        let tp = path.join(__dirname, 'L0runsJBossDeployerMultipleList.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+
+        tr.run();
+        assert(tr.ran('java -cp test_full_path com.microsoft.alm.Driver -s https://example.test/v0.1 -u test_username -p test_password -c deploy mock_file --force --disabled --name=mock_name --runtime-name=mock_runtimeName --server-groups=mock_list_group1,mock_list_group2,mock_list_group3 mock_options'), 'it should have run jbossdeployer with multiple list groups');
         assert(tr.invokedToolCount == 1, 'should have only run jbossdeployer');
         assert(tr.stdout.indexOf('bash output here') >= 0, "bash stdout");
         assert(tr.stderr.length == 0, 'should not have written to stderr');
