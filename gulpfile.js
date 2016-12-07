@@ -27,6 +27,7 @@ gulp.task('jbosslibs', function(cb) {
 
 gulp.task('build', function (cb) {
     make('build', cb);
+    make('test', cb);
     make('vsix', cb);
 });
 

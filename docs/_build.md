@@ -12,6 +12,5 @@
   1. `npm install`
   1. `gulp jbosslibs`
   1. `gulp build`
-  1. `gulp test`
 
 The vsix will be created under `_package` folder. 
