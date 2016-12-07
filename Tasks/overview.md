@@ -39,5 +39,12 @@ This extension installs the following components:
 ## Learn more
 For detailed instructions on setting up a build definition, check out [this guide](https://msdn.microsoft.com/library/vs/alm/build/define/create).
 
+Check out [this guide](https://www.visualstudio.com/en-us/docs/integrate/extensions/overview) for an overview of extensions of Visual Studio Team Services.
+
+For detailed instructions on how to get and install extensions, check out [this guide](https://www.visualstudio.com/en-us/docs/marketplace/overview)
+
+## Create a WildFly instance on Azure
+Microsoft Azure provides pre-configured [WildFly](https://azure.microsoft.com/en-us/marketplace/virtual-machines/all/?term=wildfly) images. Create your free [Azure account](https://azure.microsoft.com/en-us/free/) if you do not have an Azure account. 
+
 ## License
 The [code](https://github.com/Microsoft/vsts-jboss-wildfly) is open sourced under the MIT license. We love and encourage community contributions.
