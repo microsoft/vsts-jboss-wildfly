@@ -1,4 +1,4 @@
-This extension provides build tasks to manage and deploy WAR and EAR file to JBoss Enterprise Application Platform (EAP) 7 or WildFly 8 and above. 
+This extension provides build tasks to manage and deploy WAR and EAR file to JBoss Enterprise Application Platform (EAP) 7 or WildFly 8 and above.
 
 This extension installs the following components:
 * A service endpoint for connecting to JBoss EAP 7 and WildFly 8 and above.
@@ -13,7 +13,7 @@ This extension installs the following components:
 
    ![WildFly/JBoss EAP Endpoint](images/AddNewConnection.png)
 
-1. Create a "JBoss and WildFly" Service Endpoint and specify your JBoss EAP 7 or WildFly 8+ management URL, username and password.  
+1. Create a "JBoss and WildFly" Service Endpoint and specify your JBoss EAP 7 or WildFly 8+ management URL, username and password.
 
    ![WildFly/JBoss EAP Endpoint](images/WildFlyConnection.png)
 
@@ -23,21 +23,21 @@ This extension installs the following components:
 
    ![WildFly/Mangement task](images/managementtask.png) 
   
-1. Select the "JBoss and WildFly" service endpoint defined.
+1. Select the "JBoss and WildFly" service endpoint you created previously.
 1. Enter commands to be executed, one command per line.
 
 ## Deploy applications to JBoss EAP 7 and WildFly 8 and above
 
 1. Open your build definition and add the "JBoss EAP / WildFly Deployer CLI" task. The task can be found in the "Utility" section.
 
-   ![WildFly/Deployment task](images/deploymenttask.png) 
-  
-1. Select the "JBoss and WildFly" service endpoint defined.
-1. Enter the file to be deployed, wildcard is allowed.
-1. Select and enter other optional fields.  Hoover over the info icon at the end of each field for additional help. 
+   ![WildFly/Deployment task](images/deploymenttask.png)
+
+1. Select the "JBoss and WildFly" service endpoint you created previously.
+1. Enter the file to be deployed (a wildcard is allowed).
+1. Select and enter other optional fields.  Hover over the info icon at the end of each field for additional help.
 
 ## Learn more
 For detailed instructions on setting up a build definition, check out [this guide](https://msdn.microsoft.com/library/vs/alm/build/define/create).
 
 ## License
-The [code](https://github.com/Microsoft/vsts-jboss-wildfly) is open sourced under the MIT license. We love and encourage community contributions.  
+The [code](https://github.com/Microsoft/vsts-jboss-wildfly) is open sourced under the MIT license. We love and encourage community contributions.
