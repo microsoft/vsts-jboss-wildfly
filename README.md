@@ -1,4 +1,4 @@
-# Visual Studio Team Services Extension for JBoss and WildFly
+# [Visual Studio Team Services Extension for JBoss and WildFly](https://marketplace.visualstudio.com/items?itemName=ms-vsts.jboss-wildfly-management-extension)
 
 This extension provides build tasks to manage and deploy WAR and EAR file to JBoss Enterprise Application Platform (EAP) 7 or WildFly 8 and above.
 
