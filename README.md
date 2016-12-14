@@ -38,6 +38,9 @@ This extension installs the following components:
 1. Enter the file to be deployed (a wildcard is allowed but it must resolve to exactly one file).
 1. Select and enter other optional fields.  Hover over the info icon at the end of each field for additional help.
 
+## Deploy applications to JBoss EAP 6
+Please refer to [this guide](docs/jboss6.md).
+
 ## Learn more
 For detailed instructions on setting up a build definition, check out [this guide](https://msdn.microsoft.com/library/vs/alm/build/define/create).
 
