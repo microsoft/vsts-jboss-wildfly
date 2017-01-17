@@ -10,6 +10,7 @@ process.env["ENDPOINT_URL_mock_jbossEndpoint"] = "https://example.test/v0.1";
 // process.env["ENDPOINT_AUTH_PARAMETER_mock_jbossEndpoint_USERNAME"] = "test_username";
 process.env["ENDPOINT_AUTH_PARAMETER_mock_jbossEndpoint_PASSWORD"] = "test_password";
 
+tmr.setInput('credsType', 'serviceEndpoint');
 tmr.setInput('jbossEndpoint', 'mock_jbossEndpoint');
 tmr.setInput('file', 'mock_file');
 tmr.setInput('force', 'true');

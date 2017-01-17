@@ -4,6 +4,45 @@ import fs = require('fs');
 import path = require('path');
 import os = require('os');
 
+interface Credential {
+    serverUrl: string,
+    username: string,
+    password: string
+}
+
+function getCredentials() : Credential {
+    let credsType = tl.getInput('credsType', true);
+    let endpointUrl;
+    let username;
+    let password;
+
+    if (credsType === 'serviceEndpoint') {
+        let endpoint = tl.getInput('jbossEndpoint', true);
+        if (!endpoint) {
+            throw new Error(tl.loc("EndpointNotFound"));
+        }
+
+        endpointUrl = tl.getEndpointUrl(endpoint, false);
+        if (!endpointUrl) {
+            throw new Error(tl.loc('EndpointDoesNotDefineURL'));
+        }
+
+        let endpointAuth = tl.getEndpointAuthorization(endpoint, true);
+        username = tl.getEndpointAuthorizationParameter(endpoint, 'username', true);
+        password = tl.getEndpointAuthorizationParameter(endpoint, 'password', true);
+    } else if ( credsType === 'inputs') {
+        endpointUrl = tl.getInput('jbossServerUrl', true);
+        username = tl.getInput('jbossManagementUser', true);
+        password = tl.getInput('jbossPassword', true);
+    }
+
+    return { 
+        serverUrl: endpointUrl, 
+        username: username,
+        password: password
+    };
+}
+
 function getClassPath(): string {
     var libPath = path.join(__dirname, "lib");
 
@@ -17,19 +56,8 @@ async function run() {
     try {
         tl.setResourcePath(path.join( __dirname, 'task.json'));
 
-        let endpoint = tl.getInput('jbossEndpoint', true);
-        if (!endpoint) {
-            throw new Error(tl.loc("EndpointNotFound"));
-        }
+        let creds = getCredentials();
 
-        let endpointUrl = tl.getEndpointUrl(endpoint, false);
-        if (!endpointUrl) {
-            throw new Error(tl.loc('EndpointDoesNotDefineURL'));
-        }
-
-        let endpointAuth = tl.getEndpointAuthorization(endpoint, true);
-        let username = tl.getEndpointAuthorizationParameter(endpoint, 'username', true);
-        let password = tl.getEndpointAuthorizationParameter(endpoint, 'password', true);
         let commands: string[] = tl.getDelimitedInput('commands', '\n', true);
 
         let javaToolRunner: trm.ToolRunner = tl.tool('java');
@@ -38,10 +66,10 @@ async function run() {
         javaToolRunner.arg(['-cp', classPath, 'com.microsoft.alm.Driver']);
 
         // Add server information
-        javaToolRunner.arg(['-s', endpointUrl]);
+        javaToolRunner.arg(['-s', creds.serverUrl]);
 
         // Credential
-        javaToolRunner.arg(['-u', username, '-p', password]);
+        javaToolRunner.arg(['-u', creds.username, '-p', creds.password]);
 
         // Commands
         tl.debug('Running:');

@@ -64,7 +64,7 @@ describe('jbossmanagementcli L0 Suite', function () {
         done();
     });
 
-    it('check if it fails without an username', (done: MochaDone) => {
+    it('check if it fails without a username defined in service endpoint', (done: MochaDone) => {
         this.timeout(1000);
 
         let tp = path.join(__dirname, 'L0checkUsername.js');
@@ -76,10 +76,34 @@ describe('jbossmanagementcli L0 Suite', function () {
         done();
     });
 
-    it('check if it fails without a password', (done: MochaDone) => {
+    it('check if it fails without a password defined in a service endpoint', (done: MochaDone) => {
         this.timeout(1000);
 
         let tp = path.join(__dirname, 'L0checkPassword.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+
+        tr.run();
+        assert(tr.failed, 'task should have failed');
+
+        done();
+    });
+
+    it('check if jbossdeployer fails without a username defined', (done: MochaDone) => {
+        this.timeout(1000);
+
+        let tp = path.join(__dirname, 'L0FailUsername.js');
+        let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
+
+        tr.run();
+        assert(tr.failed, 'task should have failed');
+
+        done();
+    });
+
+    it('check if jbossdeployer fails without a password defined', (done: MochaDone) => {
+        this.timeout(1000);
+
+        let tp = path.join(__dirname, 'L0FailPassword.js');
         let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
 
         tr.run();

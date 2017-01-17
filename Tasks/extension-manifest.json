@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "jboss-wildfly-management-extension",
     "name": "JBoss and WildFly",
-    "version": "0.1.0",
+    "version": "0.112.0",
     "publisher": "ms-vsts",
     "description": "Manage and deploy your WAR and EAR files to JBoss EAP 7 and WildFly 8+ instance.",
     "public": true,
