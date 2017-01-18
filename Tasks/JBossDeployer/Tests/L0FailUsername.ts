@@ -6,12 +6,9 @@ import fs = require('fs');
 let taskPath = path.join(__dirname, '..', 'jbossdeployer.js');
 let tmr: tmrm.TaskMockRunner = new tmrm.TaskMockRunner(taskPath);
 
-process.env["ENDPOINT_URL_mock_jbossEndpoint"] = "https://example.test/v0.1";
-process.env["ENDPOINT_AUTH_PARAMETER_mock_jbossEndpoint_USERNAME"] = "test_username";
-// process.env["ENDPOINT_AUTH_PARAMETER_mock_jbossEndpoint_PASSWORD"] = "test_password";
-
-tmr.setInput('credsType', 'serviceEndpoint');
-tmr.setInput('jbossEndpoint', 'mock_jbossEndpoint');
+tmr.setInput('credsType', 'inputs');
+tmr.setInput('jbossServerUrl', 'http://jboss.test:9090/testurl');
+tmr.setInput('jbossPassword', 'Password');
 tmr.setInput('file', 'mock_file');
 tmr.setInput('force', 'true');
 tmr.setInput('disabled', 'true');

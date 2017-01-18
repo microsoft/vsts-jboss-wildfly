@@ -4,7 +4,13 @@ import fs = require('fs');
 import path = require('path');
 import os = require('os');
 
-var isWindows = os.type().match(/^Win/);
+let isWindows = os.type().match(/^Win/);
+
+interface Credential {
+    serverUrl: string,
+    username: string,
+    password: string
+}
 
 function getClassPath(): string {
     var libPath = path.join(__dirname, "lib");
@@ -114,25 +120,46 @@ function argumentCmdWithDomainGroups(serverMode: string, deploy: boolean, currCm
     return currCmd;
 }
 
-async function run() {
-    try {
-        tl.setResourcePath(path.join(__dirname, 'task.json'));
+function getCredentials() : Credential {
+    let credsType = tl.getInput('credsType', true);
+    let endpointUrl;
+    let username;
+    let password;
 
+    if (credsType === 'serviceEndpoint') {
         let endpoint = tl.getInput('jbossEndpoint', true);
         if (!endpoint) {
             throw new Error(tl.loc("EndpointNotFound"));
         }
 
-        let endpointUrl = tl.getEndpointUrl(endpoint, false);
+        endpointUrl = tl.getEndpointUrl(endpoint, false);
         if (!endpointUrl) {
             throw new Error(tl.loc('EndpointDoesNotDefineURL'));
         }
 
         let endpointAuth = tl.getEndpointAuthorization(endpoint, true);
-        let username = tl.getEndpointAuthorizationParameter(endpoint, 'username', true);
-        let password = tl.getEndpointAuthorizationParameter(endpoint, 'password', true);
+        username = tl.getEndpointAuthorizationParameter(endpoint, 'username', true);
+        password = tl.getEndpointAuthorizationParameter(endpoint, 'password', true);
+    } else if ( credsType === 'inputs') {
+        endpointUrl = tl.getInput('jbossServerUrl', true);
+        username = tl.getInput('jbossManagementUser', true);
+        password = tl.getInput('jbossPassword', true);
+    }
 
-        let cliRunner = getCLIRunner(endpointUrl, username, password);
+    return { 
+        serverUrl: endpointUrl, 
+        username: username,
+        password: password
+    };
+}
+
+async function run() {
+    try {
+        tl.setResourcePath(path.join(__dirname, 'task.json'));
+        
+        let creds = getCredentials();
+
+        let cliRunner = getCLIRunner(creds.serverUrl, creds.username, creds.password);
 
         cliRunner.arg('-c');
 
@@ -173,7 +200,7 @@ async function run() {
         let undeployApp: boolean = tl.getBoolInput('undeploy', false);
         if (undeployApp) {
             let appName = name ? name : path.basename(file); // if name is not specified, the file basename is used
-            let exists = checkExists(endpointUrl, username, password, appName);    
+            let exists = checkExists(creds.serverUrl, creds.username, creds.password, appName);    
             
             if (exists) {
                 let undeployCmd = `undeploy --name=${appName}`;
