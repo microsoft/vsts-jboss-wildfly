@@ -9,6 +9,7 @@ This extension installs the following components:
 
 ## Create a JBoss EAP / WildFly Connection
 * Make sure the application server's management http interface is exposed and can be reached over the network.
+* Skip this step if you are on Team Foundation Server 2015 and enter the credentials directly on the task.
 
 1. Open the Services page in your Visual Studio Team Services Control Panel
 1. In the New Service Endpoint list, choose "JBoss and WildFly"
@@ -25,7 +26,7 @@ This extension installs the following components:
 
    ![WildFly/Mangement task](Tasks/images/managementtask.png) 
   
-1. Select the "JBoss and WildFly" service endpoint you created previously.
+1. Select the "JBoss and WildFly" service endpoint you created previously, or enter the credentials.
 1. Enter commands to be executed, one command per line.
 
 ## Deploy applications to JBoss EAP 7 and WildFly 8 and above
@@ -34,7 +35,7 @@ This extension installs the following components:
 
    ![WildFly/Deployment task](Tasks/images/deploymenttask.png)
 
-1. Select the "JBoss and WildFly" service endpoint you created previously.
+1. Select the "JBoss and WildFly" service endpoint you created previously, or enter the credentials.
 1. Enter the file to be deployed (a wildcard is allowed but it must resolve to exactly one file).
 1. Select and enter other optional fields.  Hover over the info icon at the end of each field for additional help.
 
