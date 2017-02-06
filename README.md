@@ -31,7 +31,7 @@ This extension installs the following components:
 
 ## Deploy applications to JBoss EAP 7 and WildFly 8 and above
 
-1. Open your build definition and add the "JBoss EAP / WildFly Deployer CLI" task. The task can be found in the "Utility" section.
+1. Open your build definition and add the "JBoss EAP / WildFly Deployer CLI" task. The task can be found in the "Deploy" section.
 
    ![WildFly/Deployment task](Tasks/images/deploymenttask.png)
 
