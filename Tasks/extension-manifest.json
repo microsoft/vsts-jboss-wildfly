@@ -2,17 +2,18 @@
     "manifestVersion": 1,
     "id": "jboss-wildfly-management-extension",
     "name": "JBoss and WildFly",
-    "version": "0.112.1",
+    "version": "0.136.0",
     "publisher": "ms-vsts",
-    "description": "Manage and deploy your WAR and EAR files to JBoss EAP 7 and WildFly 8+ instance.",
+    "description": "Manage and deploy WAR and EAR files to JBoss EAP 7 and WildFly 8+.",
     "public": true,
     "categories": [
         "Build and release"
     ],
     "tags": [
         "deploy",
-        "jboss",
-        "wildfly"
+        "JBoss",
+        "WildFly",
+        "Java"
     ],
     "content": {
         "details": {
@@ -50,7 +51,7 @@
     "contributions": [
         {
             "id": "jbosseap-wildfly-endpoint-type",
-            "description": "Service Endpoint for JBoss EAP and WildFly.",
+            "description": "Service endpoint for JBoss EAP and WildFly.",
             "type": "ms.vss-endpoint.service-endpoint-type",
             "targets": [
                 "ms.vss-endpoint.endpoint-types"
