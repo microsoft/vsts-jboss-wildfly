@@ -42,20 +42,23 @@ public class Driver {
 
         final String hostname = this.server.getHost();
         int port = this.server.getPort();
-
         if (port < 0) {
             logger.info("Port not specified, default to 9990");
             port = 9990;
         }
+        String protocol = "http-remoting";
+        if ("https".equalsIgnoreCase(server.getScheme())) {
+        	protocol = "https-remoting";
+        }
 
-        cli.connect(hostname, port, this.credentials.username, this.credentials.getPassword());
+        cli.connect(protocol, hostname, port, this.credentials.username, this.credentials.getPassword());
     }
 
     /**
      * Run all commands
      */
     private void run() {
-        logger.info("Attempt to connect to " + this.server.getAuthority());
+        logger.info("Attempt to connect to " + this.server.getAuthority() + " over " + this.server.getScheme());
         this.connect();
 
         logger.info("Successfully connected.");
@@ -142,6 +145,8 @@ public class Driver {
 
         final URI server = getServerOptions(line);
         logger.info("server: " + server.getAuthority());
+        logger.info("protocol: " + server.getScheme());
+
         final Credentials credentials = getCredsOptions(line);
         logger.info("Connecting as user: " + credentials.getUsername());
         final List<String> cmds = getCmdsOptions(line);
