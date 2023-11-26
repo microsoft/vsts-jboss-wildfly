@@ -12,7 +12,7 @@
     "testLegacy": "node make.js testLegacy"
   },
   "devDependencies": {
-    "adm-zip": "0.4.7",
+    "adm-zip": "0.4.13",
     "del": "1.1.1",
     "gulp": "3.9.0",
     "gulp-mocha": "2.1.3",
